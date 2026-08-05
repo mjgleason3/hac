@@ -35,6 +35,14 @@ flowchart TB
 The operating agent cannot approve its own escape hatch. Contract updates travel through a
 separate change path; actions travel through an independent enforcement path.
 
+<p align="center">
+  <a href="assets/hac-demo.mp4">
+    <img src="assets/hac-demo.gif" alt="HAC blocks an unsafe refund and allows a compliant one" width="860">
+  </a>
+  <br>
+  <sub>Click the demo for the higher-quality MP4. Metrics shown are synthetic regression fixtures.</sub>
+</p>
+
 ```mermaid
 flowchart LR
     A["Agent proposes action"] --> I{"Identity +<br/>capability valid?"}
