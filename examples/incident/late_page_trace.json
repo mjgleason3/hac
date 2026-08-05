@@ -1,0 +1,7 @@
+{
+  "events": [
+    {"time": 0, "actor": "service:incident-coordinator", "action": "detect_sev1", "resource": "service:checkout"},
+    {"time": 30, "actor": "service:incident-coordinator", "action": "isolate_service", "resource": "service:checkout"},
+    {"time": 420, "actor": "service:incident-coordinator", "action": "page_human", "resource": "service:checkout"}
+  ]
+}

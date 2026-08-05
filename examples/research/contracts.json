@@ -1,0 +1,39 @@
+{
+  "contracts": [
+    {
+      "id": "research.root",
+      "name": "Public-source research",
+      "issuer": "human:research-director",
+      "subject": "agent:research-service",
+      "intent": "Summarize public evidence without disclosing private source material.",
+      "permissions": ["search_public", "store_note", "upload_private_data", "publish_summary"],
+      "resources": ["*"],
+      "limits": {"actions": 100, "tokens": 5000},
+      "assumptions": ["Inputs are correctly labeled public or private."],
+      "metrics": ["citation_coverage", "private_data_exposure_count"],
+      "rules": [
+        {
+          "id": "research.no-private-upload",
+          "kind": "forbid",
+          "description": "Never upload private source material.",
+          "params": {"action": "upload_private_data"},
+          "severity": "hard",
+          "source": "human"
+        },
+        {
+          "id": "research.token-budget",
+          "kind": "cumulative_limit",
+          "description": "Keep total token use within the approved budget.",
+          "params": {"field": "tokens", "max": 5000},
+          "severity": "hard",
+          "source": "human"
+        }
+      ],
+      "parent_id": null,
+      "parent_digest": null,
+      "version": 1,
+      "status": "active",
+      "seal": "94b009ef75ac53cbcb078c8c8d1d3e41b32103042d8036fa3189f6088bfed9fd"
+    }
+  ]
+}

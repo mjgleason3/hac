@@ -1,0 +1,74 @@
+{
+  "contracts": [
+    {
+      "id": "support.root",
+      "name": "Customer support objective",
+      "issuer": "human:operations-owner",
+      "subject": "agent:support-lead",
+      "intent": "Resolve customer issues quickly without unauthorized refunds or unattended high-risk decisions.",
+      "permissions": ["read_ticket", "verify_identity", "issue_refund", "risk_detected", "escalate"],
+      "resources": ["*"],
+      "limits": {"actions": 200, "refund_usd": 1000},
+      "assumptions": ["Identity verification events come from an approved identity provider."],
+      "metrics": ["resolution_rate", "verified_refund_rate", "mean_escalation_time"],
+      "rules": [
+        {
+          "id": "support.verify-first",
+          "kind": "requires_before",
+          "description": "Verify the customer on the same ticket before issuing a refund.",
+          "params": {"required": "verify_identity", "action": "issue_refund", "same_resource": true},
+          "severity": "hard",
+          "source": "human"
+        },
+        {
+          "id": "support.total-refunds",
+          "kind": "cumulative_limit",
+          "description": "Keep total refunds within the authorized allocation.",
+          "params": {"field": "refund_usd", "max": 1000},
+          "severity": "hard",
+          "source": "human"
+        },
+        {
+          "id": "support.escalate-risk",
+          "kind": "response_within",
+          "description": "Escalate a high-risk ticket within ten minutes.",
+          "params": {"trigger": "risk_detected", "response": "escalate", "within_seconds": 600, "same_resource": true},
+          "severity": "hard",
+          "source": "human"
+        }
+      ],
+      "parent_id": null,
+      "parent_digest": null,
+      "version": 1,
+      "status": "active",
+      "seal": "160bf806f4bbb3a0401b24d1d362d1ca0deea719f0ba08c05b658428e0a96c19"
+    },
+    {
+      "id": "support.refunds",
+      "name": "Refund specialist",
+      "issuer": "agent:support-lead",
+      "subject": "agent:refund-specialist",
+      "intent": "Investigate tickets and issue small, verified refunds.",
+      "permissions": ["read_ticket", "verify_identity", "issue_refund", "risk_detected", "escalate"],
+      "resources": ["*"],
+      "limits": {"actions": 60, "refund_usd": 400},
+      "assumptions": ["The parent provides a valid ticket identifier."],
+      "metrics": ["verified_refund_rate"],
+      "rules": [
+        {
+          "id": "refund.single-limit",
+          "kind": "field_limit",
+          "description": "A single refund cannot exceed $250.",
+          "params": {"action": "issue_refund", "field": "refund_usd", "op": "<=", "value": 250, "required": true},
+          "severity": "hard",
+          "source": "human"
+        }
+      ],
+      "parent_id": "support.root",
+      "parent_digest": "160bf806f4bbb3a0401b24d1d362d1ca0deea719f0ba08c05b658428e0a96c19",
+      "version": 1,
+      "status": "active",
+      "seal": "7ba089baf909af2b46f9e6a4df559070757918478a4d178871d52965b6dfa31c"
+    }
+  ]
+}

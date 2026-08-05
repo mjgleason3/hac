@@ -1,0 +1,7 @@
+{
+  "events": [
+    {"time": 0, "actor": "agent:research-service", "action": "search_public", "resource": "topic:contracts", "data": {"tokens": 900}},
+    {"time": 4, "actor": "agent:research-service", "action": "store_note", "resource": "topic:contracts", "data": {"tokens": 300}},
+    {"time": 9, "actor": "agent:research-service", "action": "upload_private_data", "resource": "external:workspace", "data": {"tokens": 100}}
+  ]
+}

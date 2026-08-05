@@ -1,0 +1,31 @@
+{
+  "contracts": [
+    {
+      "id": "incident.root",
+      "name": "Incident response objective",
+      "issuer": "human:security-owner",
+      "subject": "service:incident-coordinator",
+      "intent": "Contain severe incidents while keeping a human decision-maker in the loop.",
+      "permissions": ["detect_sev1", "isolate_service", "page_human", "collect_evidence"],
+      "resources": ["*"],
+      "limits": {"actions": 50},
+      "assumptions": ["Severity labels are emitted by an approved detector."],
+      "metrics": ["sev1_page_latency", "containment_time"],
+      "rules": [
+        {
+          "id": "incident.page-sev1",
+          "kind": "response_within",
+          "description": "Page a human within five minutes of a severity-one detection.",
+          "params": {"trigger": "detect_sev1", "response": "page_human", "within_seconds": 300, "same_resource": true},
+          "severity": "hard",
+          "source": "human"
+        }
+      ],
+      "parent_id": null,
+      "parent_digest": null,
+      "version": 1,
+      "status": "active",
+      "seal": "c35eeb07dce36c99ea8a8d6f81bac0a6ec7d9b8c28cd06f7f15c94f90e0a8384"
+    }
+  ]
+}

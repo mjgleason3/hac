@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="260" viewBox="0 0 960 260" role="img" aria-labelledby="title desc">
+  <title id="title">HAC — Hierarchical Agent Contracts</title>
+  <desc id="desc">A hierarchy of connected contract nodes beside the HAC wordmark.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#151b2e"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#67e8f9"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="960" height="260" rx="28" fill="url(#bg)"/>
+  <g stroke="#334155" stroke-width="3" fill="none">
+    <path d="M128 64v42M128 106L64 154M128 106l64 48M64 154v38M192 154v38"/>
+  </g>
+  <g fill="#0b1220" stroke="url(#signal)" stroke-width="4" filter="url(#glow)">
+    <rect x="92" y="28" width="72" height="48" rx="13"/>
+    <rect x="28" y="140" width="72" height="48" rx="13"/>
+    <rect x="156" y="140" width="72" height="48" rx="13"/>
+    <circle cx="64" cy="214" r="18"/>
+    <circle cx="192" cy="214" r="18"/>
+  </g>
+  <g font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" fill="#f8fafc">
+    <text x="286" y="120" font-size="86" font-weight="750" letter-spacing="8">HAC</text>
+    <text x="292" y="164" font-size="26" font-weight="500" fill="#cbd5e1" letter-spacing="1.5">HIERARCHICAL AGENT CONTRACTS</text>
+    <text x="292" y="204" font-size="19" fill="#94a3b8">Intent descends. Evidence returns. Authority only narrows.</text>
+  </g>
+</svg>

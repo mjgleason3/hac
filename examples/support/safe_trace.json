@@ -1,0 +1,7 @@
+{
+  "events": [
+    {"time": 0, "actor": "agent:refund-specialist", "action": "read_ticket", "resource": "ticket:42"},
+    {"time": 5, "actor": "agent:refund-specialist", "action": "verify_identity", "resource": "ticket:42"},
+    {"time": 12, "actor": "agent:refund-specialist", "action": "issue_refund", "resource": "ticket:42", "data": {"refund_usd": 75}}
+  ]
+}
